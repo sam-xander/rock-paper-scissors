@@ -1,43 +1,48 @@
 // VARIABLES
 // An array of choices variable
-var choices = ["r", "p", "s"];
+var choices = "rps";
 
 // An array of winning conditions
 var winningConditions = ["rs", "pr", "sp"];
 
 // Number of wins, draws and losses
-var numOfWins = 0;
-var numOfDraws = 0;
-var numOfLosses = 0;
+var numOfWins = 0,
+  numOfDraws = 0,
+  numOfLosses = 0;
 
-// FOR LOOP
 // Loops 10 times
-
-// Conditional statement comparing user input to the computer input
-// Increment the number of draws and create a draw alert
-
-// Conditional statement to check if result matches the winning conditions
-// Increment the number of wins and create an winning alert
-
-// Else increment losses and alert loss
-
 for (let i = 0; i < 10; i++) {
   // Store user input
-  var userChoice = prompt("Rock(r), paper(p) or scissors(s)?");
+  var userChoice = prompt("Choose rock(r), paper(p) or scissors(s)?");
 
   // Store random computer choice
-  var computerChoice = choices[Math.floor(Math.random() * 3)];
+  var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
   // Combine the variables as a the result
   var result = userChoice + computerChoice;
 
-  if (userChoice == computerChoice) {
+  if (computerChoice === r) {
+    var computerChose = "Rock";
+  } else if (computerChoice === p) {
+    var computerChose = "Paper";
+  } else {
+    var computerChose = "Scissors";
+  }
+
+  alert(`The computer chose ${computerChose}`);
+
+  // Conditional statement comparing user input to the computer input
+  if (userChoice === computerChoice) {
+    // Increment the number of draws and create a draw alert
     numOfDraws++;
     alert("It's a draw! 😮");
+    // Conditional statement to check if result matches the winning conditions
   } else if (winningConditions.includes(result)) {
+    // Increment the number of wins and create an winning alert
     numOfWins++;
     alert("You win! 🥳");
   } else {
+    // Increment losses and alert loss
     numOfLosses++;
     alert("You lose! 😭");
   }
@@ -46,30 +51,18 @@ for (let i = 0; i < 10; i++) {
   var numOfGames = i + 1;
 
   // adds plural in games played
-  if (numOfGames == 1) {
+  if (numOfGames === 1) {
     var plural = "";
   } else {
     var plural = "s";
   }
 
-  var stats =
-    "-----------------\n" +
-    numOfGames +
-    " Game" +
-    plural +
-    " Played\n" +
-    numOfWins +
-    " Wins\n" +
-    numOfDraws +
-    " Draws\n" +
-    numOfLosses +
-    " Losses\n" +
-    "-----------------\n\n";
+  var stats = `-----------------\n${numOfGames} Game${plural} Played\n${numOfWins} Wins\n${numOfDraws} Draws\n${numOfLosses} Losses\n-----------------\n\n`;
 
   if (i < 9) {
-    var keepPlaying = confirm(stats + "Play again?");
+    var keepPlaying = confirm(`${stats} Play again?`);
   } else {
-    var keepPlaying = confirm(stats + "Thanks for playing!");
+    var keepPlaying = confirm(`${stats} Thanks for playing!`);
   }
 
   if (!keepPlaying) {
